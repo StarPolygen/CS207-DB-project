@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs307.sustc.project.dao.UserInfoDao">
+    <select id="queryAllUserInfo" resultType="com.cs307.sustc.project.entity.UserInfo">
+        select * from user_info
+    </select>
+    <select id="queryUserInfoByOpenID" resultType="com.cs307.sustc.project.entity.UserInfo">
+        select * from user_info
+        where open_id = #{open_id};
+    </select>
+    <select id="queryUserInfoByEmailAddress" resultType="com.cs307.sustc.project.entity.UserInfo">
+        select * from user_info
+        where email_address = #{email_address};
+    </select>
+    <insert id="insertUserInfo" parameterType="com.cs307.sustc.project.entity.UserInfo">
+       insert into user_info (status, permission, email_address, avatar_url, nickname, open_id)
+       values (#{status}, #{permission}, #{email_address}, #{avatar_url}, #{nickname}, #{open_id});
+    </insert>
+
+</mapper>

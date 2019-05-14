@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.cs307.sustc.project.dao.CommentDao">
+    <select id="queryAllComments" resultType="com.cs307.sustc.project.entity.Comment">
+        select * from comment
+    </select>
+    <select id="queryComment" resultType="com.cs307.sustc.project.entity.Comment">
+        select * from comment
+        where order_id = #{order_id};
+    </select>
+    <insert id="insertComment" parameterType="com.cs307.sustc.project.entity.Comment">
+       insert into comment(order_id, rate, description)
+       values (#{order_id}, #{rate}, #{description});
+    </insert>
+</mapper>

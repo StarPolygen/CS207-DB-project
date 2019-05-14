@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs307.sustc.project.dao.GoodPictureDao">
+    <select id="queryAllGoodPictures" resultType="com.cs307.sustc.project.entity.GoodPicture">
+        select * from good_picture
+    </select>
+    <select id="queryGoodPicture" resultType="com.cs307.sustc.project.entity.GoodPicture">
+        select * from good_picture
+        where good_id = #{good_id};
+    </select>
+    <insert id="insertGoodPicture" parameterType="com.cs307.sustc.project.entity.GoodPicture">
+       insert into good_picture (good_id, url)
+       values (#{good_id}, #{url});
+    </insert>
+</mapper>

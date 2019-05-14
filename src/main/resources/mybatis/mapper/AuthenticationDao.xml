@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs307.sustc.project.dao.AuthenticationDao">
+    <select id="queryAllAuthentications" resultType="com.cs307.sustc.project.entity.Authentication">
+        select * from authentication
+    </select>
+    <select id="queryAuthentication" resultType="com.cs307.sustc.project.entity.Authentication">
+        select * from authentication
+        where id = #{id};
+    </select>
+    <delete id="deleteAuthentication" parameterType="int">
+        delete from authentication
+        where id = #{id};
+    </delete>
+    <insert id="insertAuthentication" parameterType="com.cs307.sustc.project.entity.Authentication">
+       insert into authentication (user_id, code, email)
+       values (#{user_id}, #{code}, #{email});
+    </insert>
+</mapper>

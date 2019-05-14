@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs307.sustc.project.dao.OrderDao">
+    <select id="queryAllOrders" resultType="com.cs307.sustc.project.entity.Order">
+        select * from `order`
+    </select>
+    <select id="queryOrdersByBuyerID" resultType="com.cs307.sustc.project.entity.Order">
+        select * from `order`
+        where buyer_id = #{buyer_id};
+    </select>
+    <select id="queryOrdersByGoodID" resultType="com.cs307.sustc.project.entity.Order">
+        select * from `order`
+        where good_id = #{good_id};
+    </select>
+    <insert id="insertOrder" parameterType="com.cs307.sustc.project.entity.Order">
+       insert into `order` (buyer_id, good_id, status)
+       values (#{buyer_id}, #{good_id}, #{status});
+    </insert>
+</mapper>

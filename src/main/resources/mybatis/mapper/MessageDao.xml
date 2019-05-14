@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs307.sustc.project.dao.MessageDao">
+    <select id="queryAllMessages" resultType="com.cs307.sustc.project.entity.Message">
+        select * from message
+    </select>
+    <select id="queryMessages" resultType="com.cs307.sustc.project.entity.Message">
+        select * from message
+        where buyer_id = #{buyer_id} and seller_id = #{seller_id}
+        and good_id = #{good_id}
+        and send_time &lt; #{send_time}
+        order by id desc
+        limit 0, 10;
+    </select>
+    <insert id="insertMessage" parameterType="com.cs307.sustc.project.entity.Message">
+       insert into message(buyer_id, seller_id, good_id, `type`, content, side)
+       values (#{buyer_id}, #{seller_id}, #{good_id}, #{type}, #{content}, #{side});
+    </insert>
+</mapper>

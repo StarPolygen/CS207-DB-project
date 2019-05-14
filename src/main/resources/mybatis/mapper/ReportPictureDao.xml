@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs307.sustc.project.dao.ReportPictureDao">
+    <select id="queryAllReportPictures" resultType="com.cs307.sustc.project.entity.ReportPicture">
+        select * from report_picture
+    </select>
+    <select id="queryReportPicturesByReportID" resultType="com.cs307.sustc.project.entity.ReportPicture">
+        select * from report_picture
+        where report_id = #{report_id};
+    </select>
+    <insert id="insertReportPicture" parameterType="com.cs307.sustc.project.entity.ReportPicture">
+       insert into report_picture (report_id, url)
+       values (#{report_id}, #{url});
+    </insert>
+
+</mapper>

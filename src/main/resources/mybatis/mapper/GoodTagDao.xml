@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs307.sustc.project.dao.GoodTagDao">
+    <select id="queryAllGoodTags" resultType="com.cs307.sustc.project.entity.GoodTag">
+        select * from good_tag
+    </select>
+    <insert id="insertGoodTag" parameterType="com.cs307.sustc.project.entity.GoodTag">
+       insert into good_tag (name)
+       values (#{name});
+    </insert>
+</mapper>

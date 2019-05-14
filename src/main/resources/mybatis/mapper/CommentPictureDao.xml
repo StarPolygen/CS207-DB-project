@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs307.sustc.project.dao.CommentPictureDao">
+    <select id="queryAllCommentPictures" resultType="com.cs307.sustc.project.entity.CommentPicture">
+        select * from comment_picture
+    </select>
+    <select id="queryCommentPicture" resultType="com.cs307.sustc.project.entity.CommentPicture">
+        select * from comment_picture
+        where comment_id = #{comment_id};
+    </select>
+    <insert id="insertCommentPicture" parameterType="com.cs307.sustc.project.entity.CommentPicture">
+       insert into comment_picture(comment_id, url)
+       values (#{comment_id}, #{url});
+    </insert>
+</mapper>

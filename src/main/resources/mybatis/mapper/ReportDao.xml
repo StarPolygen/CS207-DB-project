@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs307.sustc.project.dao.ReportDao">
+    <select id="queryAllReports" resultType="com.cs307.sustc.project.entity.Report">
+        select * from report
+    </select>
+    <insert id="insertReport" parameterType="com.cs307.sustc.project.entity.Report">
+       insert into report(good_id, reporter_id, description)
+       values (#{good_id}, #{reporter_id}, #{description});
+    </insert>
+    <update id="updateFeedback" parameterType="com.cs307.sustc.project.entity.Report">
+       update report set feedback=#{feedback}
+       where id=#{id};
+    </update>
+
+</mapper>
