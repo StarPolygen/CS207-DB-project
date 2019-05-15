@@ -3,8 +3,11 @@ package com.cs307.sustc.project.tools;
 import com.cs307.sustc.project.dao.GoodDao;
 import com.cs307.sustc.project.entity.Good;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
+
+@Component
 public class Search {
     // Test Result: can not be autowired????
     @Autowired

@@ -23,7 +23,7 @@ public interface GoodDao {
      * @param name
      * @return
      */
-    List<Good> findByName(String name);
+    List<Good> findByName(@Param("name") String name);
 
 
     /**
@@ -31,7 +31,7 @@ public interface GoodDao {
      * @param name
      * @return
      */
-    List<Good> findByKeyword(String name);
+    List<Good> findByKeyword(@Param("name") String name);
 
     /**
      * find all goods with a tag
