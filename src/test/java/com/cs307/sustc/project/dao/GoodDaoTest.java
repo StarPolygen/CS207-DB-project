@@ -17,6 +17,7 @@ public class GoodDaoTest {
 
     @Test
     public void queryAllGoods(){
+        System.out.println(goodDao);
         List<Good> list = goodDao.queryAllGoods();
         for(Good good : list)
             System.out.println(good);

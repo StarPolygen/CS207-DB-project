@@ -23,7 +23,7 @@ public class EmailAuthentication {
         EmailInfo emailInfo = new EmailInfo(email, "二手交易市场验证码", "<h2>验证码: </h2><h3>" +
                 randomCode.generate(6) + "</h3>");
         emailUtil.sendHtmlMail(emailInfo);
-        authenticationDao.insertAuthentication(new AuthenticationDao());
+//        authenticationDao.insertAuthentication(new AuthenticationDao());
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status", "0");
         return jsonObject.toString();

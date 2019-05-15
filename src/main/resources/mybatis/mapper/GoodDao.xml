@@ -20,4 +20,20 @@
        insert into good(seller_id, good_tag, `name`, description, good_status, price, last_price)
        values (#{seller_id}, #{good_tag}, #{name}, #{description}, #{good_status}, #{price}, #{last_price});
     </insert>
+
+    <select id="findByName" resultType="com.cs307.sustc.project.entity.Good">
+        select * from good where good_status=1 and name=#{name} order by release_time desc limit 1000
+    </select>
+
+    <select id="findWithTag" resultType="com.cs307.sustc.project.entity.Good">
+        select * from good where good_status=1 and good_tag=#{tag} and name=#{name} order by release_time desc limit 1000
+    </select>
+
+    <select id="findKeywordWithTag" resultType="com.cs307.sustc.project.entity.Good">
+        select * from good where good_status=1 and good_tag=#{tag} and name like '%${name}%' order by release_time desc limit 1000
+    </select>
+
+    <select id="findByKeyword" resultType="com.cs307.sustc.project.entity.Good">
+        select * from good where good_status=1 and name like '%${name}%' order by release_time desc limit 1000
+    </select>
 </mapper>
