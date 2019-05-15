@@ -18,8 +18,14 @@ public class Search {
     private Map<StringIntegerKey,Map<Good,Integer>> cacheWithTag;
 
     public List<Good> search(List<String> keywords, Integer page){
+        int offset,end;
         if(page==null||page<=0){
-            page=1;
+            offset=0;
+            end=2000;
+        }
+        else{
+            offset=(page-1)*20;
+            end=offset+20;
         }
         HashMap<Good,Integer> hashMap=new HashMap<>();
         for(String keyword:keywords){
@@ -31,13 +37,18 @@ public class Search {
             }
         }
         List<Good> res=sortedList(hashMap);
-        int offset=(page-1)*20;
-        return res.subList(Math.min(offset,res.size()),Math.min(offset+20,res.size()));
+        return res.subList(Math.min(offset,res.size()),Math.min(end,res.size()));
     }
 
     public List<Good> search(List<String> keywords,Integer tag,Integer page){
+        int offset,end;
         if(page==null||page<=0){
-            page=1;
+            offset=0;
+            end=2000;
+        }
+        else{
+            offset=(page-1)*20;
+            end=offset+20;
         }
         HashMap<Good,Integer> hashMap=new HashMap<>();
         for(String keyword:keywords){
@@ -50,8 +61,7 @@ public class Search {
             }
         }
         List<Good> res=sortedList(hashMap);
-        int offset=(page-1)*20;
-        return res.subList(Math.min(offset,res.size()),Math.min(offset+20,res.size()));
+        return res.subList(Math.min(offset,res.size()),Math.min(end,res.size()));
     }
 
     private void maintain(){
