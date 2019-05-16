@@ -6,6 +6,19 @@
     <select id="queryAllReports" resultType="com.cs307.sustc.project.entity.Report">
         select * from report
     </select>
+
+    <select id="queryAllReportsWithOutFeedback" resultType="com.cs307.sustc.project.entity.Report">
+        select * from report where feedback is null order by id desc limit 2000
+    </select>
+
+    <select id="queryAllReportsWithFeedback" resultType="com.cs307.sustc.project.entity.Report">
+        select * from report where feedback is not null order by  id desc limit 2000
+    </select>
+
+    <select id="queryAllReportBy" resultType="com.cs307.sustc.project.entity.Report" parameterType="java.lang.Integer">
+        select * from report where reporter_id=#{id} order by id desc
+    </select>
+
     <insert id="insertReport" parameterType="com.cs307.sustc.project.entity.Report">
        insert into report(good_id, reporter_id, description)
        values (#{good_id}, #{reporter_id}, #{description});

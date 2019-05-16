@@ -24,7 +24,8 @@ public class ReportDaoTest {
 
     @Test
     public void insertReport(){
-        reportDao.insertReport(new Report(9, 1, "Good"));
+        for(int i=10;i<20;i++)
+        reportDao.insertReport(new Report(i, 1, "商品与描述不符，说好的九成新实际上伊拉克成色"));
     }
 
     @Test

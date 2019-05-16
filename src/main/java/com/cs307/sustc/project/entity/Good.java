@@ -116,4 +116,14 @@ public class Good {
                 + name + ", description: " + description + ", release_time: " + release_time + ", good_status: "
                 + good_status + ", price: " + price + ", last_price: " + last_price;
     }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Good && ((Good) obj).id.equals(id);
+    }
 }

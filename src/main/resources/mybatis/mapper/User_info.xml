@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cs307.sustc.project.dao.UserInfoDao">
     <select id="queryAllUserInfo" resultType="com.cs307.sustc.project.entity.UserInfo">
-        select * from user_info order by id desc limit 2000
+        select * from user_info where status&gt;0 order by id desc
     </select>
 
     <select id="queryUserInfoById" resultType="com.cs307.sustc.project.entity.UserInfo">
@@ -22,5 +22,10 @@
        insert into user_info (status, permission, email_address, avatar_url, nickname, open_id)
        values (#{status}, #{permission}, #{email_address}, #{avatar_url}, #{nickname}, #{open_id});
     </insert>
+
+    <update id="changeStatus" parameterType="java.lang.Integer">
+        update user_info set status = #{val} where id=#{id};
+    </update>
+
 
 </mapper>

@@ -37,7 +37,7 @@ public class UserInfoController {
             return "请选择一个用户";
         }
         List<UserInfo> user=userInfoDao.queryUserInfoById(id);
-        if(user.size()>0&&user.get(1).getStatus()==1){
+        if(user.size()>0&&user.get(0).getStatus()==1){
 //            System.out.println("changed!");
             userInfoDao.changeStatus(id,0);
             return "注销用户成功";
