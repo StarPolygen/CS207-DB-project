@@ -4,7 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cs307.sustc.project.dao.UserInfoDao">
     <select id="queryAllUserInfo" resultType="com.cs307.sustc.project.entity.UserInfo">
-        select * from user_info
+        select * from user_info order by id desc limit 2000
+    </select>
+
+    <select id="queryUserInfoById" resultType="com.cs307.sustc.project.entity.UserInfo">
+        select * from user_info where id=#{id}
     </select>
     <select id="queryUserInfoByOpenID" resultType="com.cs307.sustc.project.entity.UserInfo">
         select * from user_info

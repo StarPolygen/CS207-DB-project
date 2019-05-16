@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cs307.sustc.project.dao.GoodDao">
     <select id="queryAllGoods" resultType="com.cs307.sustc.project.entity.Good">
-        select * from good
+        select * from good where good_status&gt;0 order by id desc limit 2000
     </select>
     <select id="queryGoodsByNumber" resultType="com.cs307.sustc.project.entity.Good">
         select * from good
@@ -16,6 +16,11 @@
         select * from good
         where id = #{id};
     </select>
+
+    <update id="changeStatus" parameterType="java.lang.Integer">
+        update good set good_status = #{val} where id=#{id};
+    </update>
+
     <insert id="insertGood" parameterType="com.cs307.sustc.project.entity.Good">
        insert into good(seller_id, good_tag, `name`, description, good_status, price, last_price)
        values (#{seller_id}, #{good_tag}, #{name}, #{description}, #{good_status}, #{price}, #{last_price});

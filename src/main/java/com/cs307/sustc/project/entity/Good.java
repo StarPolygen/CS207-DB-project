@@ -9,7 +9,7 @@ public class Good {
     private String name;
     private String description;
     private Date release_time;
-    private Integer good_status;
+    private Integer good_status;// 1: valid, 2: sold; -1: 被下架
     private float price;
     private float last_price;
 

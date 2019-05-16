@@ -17,6 +17,7 @@ public interface GoodDao {
 
     void insertGood(Good good);
 
+    void changeStatus(Integer id,Integer val);
     /**
      * find all goods with a keywords
      * limit 1000

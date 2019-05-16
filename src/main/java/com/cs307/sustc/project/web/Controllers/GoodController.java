@@ -20,14 +20,40 @@ public class GoodController {
     @Autowired
     Search search;
 
-    //???? 当使用restful风格传入参数时，会有cors
-    @RequestMapping(value = "/good",method = RequestMethod.GET)
+    //???? 当使用restful风格传入参数时，会cors
+    @RequestMapping(value = "/good/default",method = RequestMethod.GET)
     @CrossOrigin
-    public List<Good> search(@RequestParam(value = "name", required = false, defaultValue = "") String name) {
-//        response.addHeader("*", "http://localhost:3000");
-        if(name.length()==0){
+    public List<Good> search() {
+//        if(name.length()==0){
             return goodDao.queryAllGoods();
+//        }
+//        return search.search(List.of(name.split(" ")),1);
+    }
+
+    @RequestMapping(value = "/good/search",method = RequestMethod.GET)
+    @CrossOrigin
+    public List<Good> search(@RequestParam(value = "name") String name) {
+//        if(name.length()==0){
+//        return goodDao.queryAllGoods();
+//        }
+        return search.search(List.of(name.split(" ")),-1);
+    }
+
+
+    @RequestMapping(value = "good/remove",method = RequestMethod.GET)
+    @CrossOrigin
+    public String remove(@RequestParam(value = "id", required = false, defaultValue = "-1") Integer id) {
+        if(id==-1){
+            return "请选择一项下架";
         }
-        return search.search(List.of(name.split(" ")),1);
+        Good good=goodDao.queryGoodByID(id);
+        if(good!=null&&good.getgood_status()==1){
+//            System.out.println("changed!");
+            goodDao.changeStatus(id,-1);
+            return "下架成功";
+        }
+        else{
+            return "下架失败";
+        }
     }
 }

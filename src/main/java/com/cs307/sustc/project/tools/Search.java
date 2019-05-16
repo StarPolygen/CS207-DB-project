@@ -13,7 +13,7 @@ public class Search {
     @Autowired
     private GoodDao goodDao;
 
-    private static final int BUFFER_SIZE=1024;
+    private static final int BUFFER_SIZE=0;
     private Map<String,Map<Good,Integer>> cacheWithoutTag;
     private Map<StringIntegerKey,Map<Good,Integer>> cacheWithTag;
 
