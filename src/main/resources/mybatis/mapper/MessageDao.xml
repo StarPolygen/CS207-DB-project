@@ -20,6 +20,6 @@
     </insert>
 
     <select id="queryMessageList" parameterType="java.lang.Integer" resultType="com.cs307.sustc.project.entity.Message">
-        select * from (select m.id, m.buyer_id, m.seller_id, m.good_id, m.send_time, m.type, m.content, m.side from message m join good g on m.good_id = g.id where g.seller_id=#{user_id} or m.buyer_id=#{user_id} order by send_time desc) as t2 group by t2.good_id;
+        select * from (select m.id, m.buyer_id, m.seller_id, m.good_id, m.send_time, m.type, m.content, m.side from message m join good g on m.good_id = g.id where g.seller_id=#{user_id} or m.buyer_id=#{user_id} order by send_time desc) as t2 group by t2.good_id order by t2.id desc;
     </select>
 </mapper>
