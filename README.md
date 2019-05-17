@@ -41,5 +41,7 @@ List<Comment> queryComments(Integer user_id);
    List<Good> search(List<String> keywords,Integer tag,Integer page);
    ```
 
+3. 对搜索结果按多种指标排序
+
    
 
