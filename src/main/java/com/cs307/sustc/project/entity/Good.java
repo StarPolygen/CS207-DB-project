@@ -10,11 +10,20 @@ public class Good {
     private String description;
     private Date release_time;
     private Integer good_status;// 1: valid, 2: sold; -1: 被下架
+    private String picture_url;//default picture url
     private float price;
     private float last_price;
 
+    public void setPicture_url(String picture_url) {
+        this.picture_url = picture_url;
+    }
+
+    public String getPicture_url() {
+        return picture_url;
+    }
+
     public Good(Integer id, Integer seller_id, Integer good_tag, String name, String description,
-                Date release_time, Integer good_status, float price, float last_price) {
+                Date release_time, Integer good_status, float price, float last_price,String picture_url) {
         this.id = id;
         this.seller_id = seller_id;
         this.good_tag = good_tag;
@@ -24,6 +33,7 @@ public class Good {
         this.good_status = good_status;
         this.price = price;
         this.last_price = last_price;
+        this.picture_url=picture_url;
     }
 
     public Good(Integer seller_id, Integer good_tag, String name, String description,

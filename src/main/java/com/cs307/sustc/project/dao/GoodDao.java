@@ -50,4 +50,7 @@ public interface GoodDao {
      */
     List<Good> findKeywordWithTag(@Param("name") String name,@Param("tag") Integer tag);
 
+    List<Good> queryGoodsRandom();
+
+    List<Good> queryServersRandom();
 }

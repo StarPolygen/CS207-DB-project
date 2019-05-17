@@ -43,4 +43,9 @@ public class MessageDaoTest {
         }
     }
 
+    @Test
+    public void recentMessages(){
+        System.out.println(messageDao.queryMessageList(1));
+    }
+
 }

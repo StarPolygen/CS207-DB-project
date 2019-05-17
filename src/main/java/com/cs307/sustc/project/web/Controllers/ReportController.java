@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,19 +19,29 @@ public class ReportController {
 
     @CrossOrigin
     @RequestMapping("/report/default")
-    public List<Report> getUserInfo(){
+    public List<Report> getUserInfo(@RequestParam("token") String token){
+        if(token==null||(!AdminLoginController.tokens.containsy(token))){
+            return new ArrayList<>();
+        }
         return reportDao.queryAllReportsWithOutFeedback();
     }
 
     @CrossOrigin
     @RequestMapping("/report/search")
-    public List<Report> findUser(@RequestParam(value = "id") Integer id){
+    public List<Report> findUser(@RequestParam("token") String token,@RequestParam(value = "id") Integer id){
+        if(token==null||(!AdminLoginController.tokens.containsy(token))){
+            return new ArrayList<>();
+        }
         return reportDao.queryAllReportBy(id);
     }
 
     @RequestMapping(value = "report/send_feedback")
     @CrossOrigin
-    public void remove(@RequestParam("id") Integer id, @RequestParam("msg") String message) {
+    public boolean remove(@RequestParam("token") String token,@RequestParam("id") Integer id, @RequestParam("msg") String message) {
+        if(token==null||(!AdminLoginController.tokens.containsy(token))){
+            return false;
+        }
         reportDao.updateFeedback(id,message);
+        return true;
     }
 }

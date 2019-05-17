@@ -1,15 +1,14 @@
 package com.cs307.sustc.project.web.Controllers;
 
 import com.cs307.sustc.project.dao.UserInfoDao;
-import com.cs307.sustc.project.entity.Report;
 import com.cs307.sustc.project.entity.UserInfo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,7 +19,10 @@ public class UserInfoController {
 
     @CrossOrigin
     @RequestMapping("/user_info/default")
-    public List<UserInfo> getUserInfo(){
+    public List<UserInfo> getUserInfo(@RequestParam("token") String token){
+        if(token==null||(!AdminLoginController.tokens.containsy(token))){
+            return new ArrayList<>();
+        }
         return userInfoDao.queryAllUserInfo();
     }
 
@@ -32,7 +34,10 @@ public class UserInfoController {
 
     @RequestMapping(value = "user_info/remove")
     @CrossOrigin
-    public String remove(@RequestParam(value = "id", required = false, defaultValue = "-1") Integer id) {
+    public String remove(@RequestParam("token")String token, @RequestParam(value = "id", required = false, defaultValue = "-1") Integer id) {
+        if(token==null||(!AdminLoginController.tokens.containsy(token))){
+            return "登录信息错误，操作失败";
+        }
         if(id==-1){
             return "请选择一个用户";
         }

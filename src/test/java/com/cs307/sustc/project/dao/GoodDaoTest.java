@@ -42,4 +42,20 @@ public class GoodDaoTest {
         for(int x = 0; x < 20; x++)
             goodDao.insertGood(good);
     }
+
+    @Test
+    public void updateTest(){
+        for(int i=1;i<=100;i++){
+            Good good=goodDao.queryGoodByID(i);
+            if(good!=null){
+                good.setPicture_url("https://www.npmjs.com/package/mdi-vue");
+            }
+        }
+    }
+
+    @Test
+    public void randomTest(){
+        System.out.println(goodDao.queryGoodsRandom());
+        System.out.println(goodDao.queryServersRandom());
+    }
 }

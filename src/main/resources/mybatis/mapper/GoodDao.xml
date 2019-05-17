@@ -22,8 +22,8 @@
     </update>
 
     <insert id="insertGood" parameterType="com.cs307.sustc.project.entity.Good">
-       insert into good(seller_id, good_tag, `name`, description, good_status, price, last_price)
-       values (#{seller_id}, #{good_tag}, #{name}, #{description}, #{good_status}, #{price}, #{last_price});
+       insert into good(seller_id, good_tag, `name`, description, good_status, price, last_price, picture_url)
+       values (#{seller_id}, #{good_tag}, #{name}, #{description}, #{good_status}, #{price}, #{last_price},#{picture_url});
     </insert>
 
     <select id="findByName" resultType="com.cs307.sustc.project.entity.Good">
@@ -40,5 +40,17 @@
 
     <select id="findByKeyword" resultType="com.cs307.sustc.project.entity.Good">
         select * from good where good_status=1 and name like '%${name}%' order by release_time desc limit 1000
+    </select>
+
+    <select id="queryGoodsRandom" resultType="com.cs307.sustc.project.entity.Good">
+        SELECT t1.id,seller_id,good_tag,name,description,release_time,good_status,price,last_price,picture_url FROM good AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM good)-(SELECT MIN(id) FROM good))+(SELECT MIN(id) FROM good)) AS id) AS t2
+        WHERE t1.id >= t2.id and good_status>0
+        ORDER BY t1.id LIMIT 14;
+    </select>
+
+    <select id="queryServersRandom" resultType="com.cs307.sustc.project.entity.Good">
+        SELECT t1.id,seller_id,good_tag,name,description,release_time,good_status,price,last_price,picture_url FROM good AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM good)-(SELECT MIN(id) FROM good))+(SELECT MIN(id) FROM good)) AS id) AS t2
+        WHERE t1.id >= t2.id and good_status>0 and good_tag = 9
+        ORDER BY t1.id LIMIT 14;
     </select>
 </mapper>
