@@ -100,8 +100,8 @@ public class Search {
     }
 
     public Search() {
-        this.cacheWithTag=new HashMap<>();
-        this.cacheWithoutTag=new HashMap<>();
+        cacheWithTag=new HashMap<>();
+        cacheWithoutTag=new HashMap<>();
     }
 
 
