@@ -16,6 +16,7 @@ public class Search {
     private static final int BUFFER_SIZE=8;
     private static Map<String,Map<Good,Integer>> cacheWithoutTag;
     private static Map<StringIntegerKey,Map<Good,Integer>> cacheWithTag;
+    private static Date lastClearTime;
 
     public List<Good> search(List<String> keywords, Integer page){
         int offset,end;
@@ -117,6 +118,10 @@ public class Search {
     }
 
     private void maintain(){
+        if(System.currentTimeMillis()-lastClearTime.getTime()>1800000){
+            cacheWithoutTag=new HashMap<>();
+            cacheWithTag=new HashMap<>();
+        }
         if(cacheWithoutTag.size()>BUFFER_SIZE){
             cacheWithoutTag=new HashMap<>();
         }
@@ -128,6 +133,7 @@ public class Search {
     public Search() {
         cacheWithTag=new HashMap<>();
         cacheWithoutTag=new HashMap<>();
+        lastClearTime=new Date();
     }
 
 
