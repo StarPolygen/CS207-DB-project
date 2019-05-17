@@ -13,9 +13,9 @@ public class Search {
     @Autowired
     private GoodDao goodDao;
 
-    private static final int BUFFER_SIZE=0;
-    private Map<String,Map<Good,Integer>> cacheWithoutTag;
-    private Map<StringIntegerKey,Map<Good,Integer>> cacheWithTag;
+    private static final int BUFFER_SIZE=8;
+    private static Map<String,Map<Good,Integer>> cacheWithoutTag;
+    private static Map<StringIntegerKey,Map<Good,Integer>> cacheWithTag;
 
     public List<Good> search(List<String> keywords, Integer page){
         int offset,end;
@@ -64,6 +64,32 @@ public class Search {
         return res.subList(Math.min(offset,res.size()),Math.min(end,res.size()));
     }
 
+    public List<Good> search(List<String> keywords, Integer page, String sortKey,boolean decrease){
+        List<Good> res;
+        if(sortKey.equals("price")){
+            res=search(keywords,-1);
+            res.sort((a,b)->Float.compare(a.getPrice(),b.getPrice()));
+        }
+        else if(sortKey.equals("time")){
+            res=search(keywords,-1);
+            res.sort(Comparator.comparing(Good::getrelease_time));
+        }
+        else{
+            return new ArrayList<>();
+        }
+        if(decrease){
+            Collections.reverse(res);
+        }
+        if(page<=0){
+            return res;
+        }
+        else{
+            int offset=(page-1)*20;
+            int end=offset+20;
+            return res.subList(Math.min(offset,res.size()),Math.min(end,res.size()));
+        }
+    }
+
     private void maintain(){
         if(cacheWithoutTag.size()>BUFFER_SIZE){
             cacheWithoutTag=new HashMap<>();
@@ -77,8 +103,8 @@ public class Search {
         this.cacheWithTag=new HashMap<>();
         this.cacheWithoutTag=new HashMap<>();
     }
-    
-    
+
+
     private class SearchResult{
 
         private SearchResult(){
@@ -123,7 +149,7 @@ public class Search {
     }
 
 
-    
+
     private class StringIntegerKey {
         private Integer tag;
         private String str;
