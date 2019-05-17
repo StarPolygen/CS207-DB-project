@@ -161,7 +161,7 @@ public class Search {
 
         @Override
         public boolean equals(Object obj) {
-            if(obj != null && obj instanceof StringIntegerKey) {
+            if(obj instanceof StringIntegerKey) {
                 StringIntegerKey s = (StringIntegerKey)obj;
                 return tag.equals(s.tag) && str.equals(s.str);
             }
