@@ -14,4 +14,8 @@
        insert into comment(order_id, rate, description)
        values (#{order_id}, #{rate}, #{description});
     </insert>
+
+    <select id="queryComments" parameterType="java.lang.Integer" resultType="com.cs307.sustc.project.entity.Comment">
+        select c.id,c.order_id, c.rate,c.description,c.time, ui.avatar_url as avater from comment c join `order` o on c.order_id = o.id join good g on o.good_id = g.id join user_info ui on o.buyer_id = ui.id where g.seller_id=#{user_id} order by c.id desc;
+    </select>
 </mapper>

@@ -8,6 +8,17 @@ public class Comment {
     private Integer rate;
     private String description;
     private Date time;
+    private String avatar;
+
+    public Comment(Integer id, Integer order_id, Integer rate, String description, Date time,String avatar) {
+        this.id = id;
+        this.order_id = order_id;
+        this.rate = rate;
+        this.description = description;
+        this.time = time;
+        this.avatar=avatar;
+    }
+
 
     public Comment(Integer id, Integer order_id, Integer rate, String description, Date time) {
         this.id = id;
@@ -63,6 +74,10 @@ public class Comment {
 
     public Date getTime(){
         return time;
+    }
+
+    public String getAvatar() {
+        return avatar;
     }
 
     public String toString(){

@@ -31,4 +31,9 @@ public class CommentDaoTest {
     public void insertComment(){
         commentDao.insertComment(new Comment(3, 5,"good x"));
     }
+
+    @Test
+    public void queryCommentsTest(){
+        System.out.println(commentDao.queryComments(1));
+    }
 }

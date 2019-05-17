@@ -1,6 +1,8 @@
 package com.cs307.sustc.project.web.Controllers;
 
+import com.cs307.sustc.project.dao.CommentDao;
 import com.cs307.sustc.project.dao.UserInfoDao;
+import com.cs307.sustc.project.entity.Comment;
 import com.cs307.sustc.project.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -50,5 +52,18 @@ public class UserInfoController {
         else{
             return "注销用户失败";
         }
+    }
+
+
+    /**
+     * just test
+     * @return
+     */
+    @Autowired
+    private CommentDao commentDao;
+    @RequestMapping(value = "user_info/comments")
+    @CrossOrigin
+    public List<Comment> getComments(){
+        return commentDao.queryComments(1);
     }
 }
