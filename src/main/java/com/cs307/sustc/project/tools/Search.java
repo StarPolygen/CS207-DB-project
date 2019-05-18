@@ -87,7 +87,7 @@ public class Search {
             res=res.stream().filter(t->t.getPrice()>=l&&t.getPrice()<=h).sorted((a,b)->Float.compare(a.getPrice(),b.getPrice())).collect(Collectors.toList());
         }
         else if(sortKey.equals("time")){
-            res=res.stream().filter(t->t.getPrice()>=l&&t.getPrice()<=h).sorted(Comparator.comparing(Good::getrelease_time)).collect(Collectors.toList());
+            res=res.stream().filter(t->t.getPrice()>=l&&t.getPrice()<=h).sorted(Comparator.comparing(Good::getRelease_time)).collect(Collectors.toList());
         }
         else{
             res=res.stream().filter(t->t.getPrice()>=l&&t.getPrice()<=h).collect(Collectors.toList());
@@ -162,7 +162,7 @@ public class Search {
             goods.sort(
                     (o1, o2) -> {
                         if(priority.get(o1).equals(priority.get(o2))){
-                            return o2.getrelease_time().compareTo(o1.getrelease_time());
+                            return o2.getRelease_time().compareTo(o1.getRelease_time());
                         }
                         else return priority.get(o2).compareTo(priority.get(o1));
                     }

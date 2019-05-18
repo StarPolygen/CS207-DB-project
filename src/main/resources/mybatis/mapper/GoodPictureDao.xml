@@ -10,6 +10,12 @@
         select * from good_picture
         where good_id = #{good_id};
     </select>
+
+    <select id="queryGoodPicturesUrl" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select url from good_picture
+        where good_id = #{good_id};
+    </select>
+
     <insert id="insertGoodPicture" parameterType="com.cs307.sustc.project.entity.GoodPicture">
        insert into good_picture (good_id, url)
        values (#{good_id}, #{url});

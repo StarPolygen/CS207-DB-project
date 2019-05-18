@@ -8,6 +8,8 @@ public interface GoodPictureDao {
 
     List<GoodPicture> queryAllGoodPictures();
 
+    List<String> queryAllGoodPicturesUrl(Integer good_id);
+
     List<GoodPicture> queryGoodPicture(Integer good_id);
 
     void insertGoodPicture(GoodPicture goodPicture);

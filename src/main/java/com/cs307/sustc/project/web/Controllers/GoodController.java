@@ -1,6 +1,7 @@
 package com.cs307.sustc.project.web.Controllers;
 
 import com.cs307.sustc.project.dao.GoodDao;
+import com.cs307.sustc.project.dao.GoodPictureDao;
 import com.cs307.sustc.project.entity.Good;
 import com.cs307.sustc.project.tools.Search;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class GoodController {
     GoodDao goodDao;
     @Autowired
     Search search;
+    @Autowired
+    GoodPictureDao goodPictureDao;
 
     @RequestMapping(value = "/good/default",method = RequestMethod.GET)
     @CrossOrigin
@@ -52,7 +55,7 @@ public class GoodController {
             return "请选择一项下架";
         }
         Good good=goodDao.queryGoodByID(id);
-        if(good!=null&&good.getgood_status()==1){
+        if(good!=null&&good.getGood_status()==1){
 //            System.out.println("changed!");
             goodDao.changeStatus(id,-1);
             return "下架成功";
@@ -60,5 +63,15 @@ public class GoodController {
         else{
             return "下架失败";
         }
+    }
+
+    @RequestMapping(value = "good/picture",method = RequestMethod.GET)
+    @CrossOrigin
+    public List<String> getPictures(@RequestParam("good") Integer good){
+        List<String> list=goodPictureDao.queryAllGoodPicturesUrl(good);
+        List<String> res=new ArrayList<>();
+        res.add("1");
+        res.addAll(list);
+        return res;
     }
 }
