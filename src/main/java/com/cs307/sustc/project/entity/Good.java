@@ -49,6 +49,39 @@ public class Good {
         this.last_price = last_price;
     }
 
+    public Integer getGood_tag() {
+        return good_tag;
+    }
+
+    public void setGood_tag(Integer good_tag) {
+        this.good_tag = good_tag;
+    }
+
+    public Date getRelease_time() {
+        return release_time;
+    }
+
+    public void setRelease_time(Date release_time) {
+        this.release_time = release_time;
+    }
+
+    public Integer getGood_status() {
+        return good_status;
+    }
+
+    public void setGood_status(Integer good_status) {
+        this.good_status = good_status;
+    }
+
+    public float getLast_price() {
+        return last_price;
+    }
+
+    public void setLast_price(float last_price) {
+        this.last_price = last_price;
+    }
+
+
     public Integer getId() {
         return id;
     }

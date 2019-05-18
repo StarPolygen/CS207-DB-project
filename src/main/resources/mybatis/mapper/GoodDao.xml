@@ -71,4 +71,10 @@
         WHERE t1.id >= t2.id and good_status>0 and good_tag = 9
         ORDER BY t1.id LIMIT 14;
     </select>
+
+    <select id="queryGoodAndSellerByGoodId" resultType="java.util.Map">
+        select good.id as good_id,good_tag,good.name as good_name, good.description as good_description,good.release_time as good_release_time, good.price as good_price,
+               good.last_price as good_last_price, picture_url as good_picture_url, seller_id, ui.nickname as seller_nickname, ui.avatar_url as seller_avatar_url
+        from good cross join user_info ui on good.seller_id = ui.id where good.id=#{good_id}
+    </select>
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class Search {
@@ -65,18 +66,22 @@ public class Search {
         return res.subList(Math.min(offset,res.size()),Math.min(end,res.size()));
     }
 
-    public List<Good> search(List<String> keywords, Integer page, String sortKey,boolean decrease){
-        List<Good> res;
+    public List<Good> search(List<String> keywords, Integer page, String sortKey,boolean decrease,float low,float up){
+        List<Good> res=search(keywords,-1);
+        return getGoodsHelp(page, sortKey, decrease, res, low, up);
+    }
+
+    private List<Good> getGoodsHelp(Integer page, String sortKey, boolean decrease, List<Good> res, float low, float up) {
+        float l = Math.max(0,low);
+        float h = Math.min(up,0x3f3f3f3f);
         if(sortKey.equals("price")){
-            res=search(keywords,-1);
-            res.sort((a,b)->Float.compare(a.getPrice(),b.getPrice()));
+            res=res.stream().filter(t->t.getPrice()>=l&&t.getPrice()<=h).sorted((a,b)->Float.compare(a.getPrice(),b.getPrice())).collect(Collectors.toList());
         }
         else if(sortKey.equals("time")){
-            res=search(keywords,-1);
-            res.sort(Comparator.comparing(Good::getrelease_time));
+            res=res.stream().filter(t->t.getPrice()>=l&&t.getPrice()<=h).sorted(Comparator.comparing(Good::getrelease_time)).collect(Collectors.toList());
         }
         else{
-            return new ArrayList<>();
+            res=res.stream().filter(t->t.getPrice()>=l&&t.getPrice()<=h).collect(Collectors.toList());
         }
         if(decrease){
             Collections.reverse(res);
@@ -91,30 +96,9 @@ public class Search {
         }
     }
 
-    public List<Good> search(List<String> keywords,Integer tag, Integer page, String sortKey,boolean decrease){
-        List<Good> res;
-        if(sortKey.equals("price")){
-            res=search(keywords,tag,-1);
-            res.sort((a,b)->Float.compare(a.getPrice(),b.getPrice()));
-        }
-        else if(sortKey.equals("time")){
-            res=search(keywords,tag,-1);
-            res.sort(Comparator.comparing(Good::getrelease_time));
-        }
-        else{
-            return new ArrayList<>();
-        }
-        if(decrease){
-            Collections.reverse(res);
-        }
-        if(page<=0){
-            return res;
-        }
-        else{
-            int offset=(page-1)*20;
-            int end=offset+20;
-            return res.subList(Math.min(offset,res.size()),Math.min(end,res.size()));
-        }
+    public List<Good> search(List<String> keywords,Integer tag, Integer page, String sortKey,boolean decrease,Integer low,Integer up){
+        List<Good> res=search(keywords,tag,-1);
+        return getGoodsHelp(page, sortKey, decrease, res, low, up);
     }
 
     private void maintain(){
