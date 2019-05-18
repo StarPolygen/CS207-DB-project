@@ -17,6 +17,24 @@
         where id = #{id};
     </select>
 
+    <select id="queryAllRealGoods" resultType="java.lang.Integer">
+        select id
+        from good where good_status>0 and good_tag!=9 order by id desc limit 2000
+    </select>
+
+    <select id="queryAllService" resultType="java.lang.Integer">
+        select id
+        from good where good_status>0 and good_tag=9 order by id desc limit 2000
+    </select>
+
+    <select id="queryByIds" resultType="com.cs307.sustc.project.entity.Good">
+        select * from good g where g.id in
+        <foreach collection="list" item="goodId" index="index"
+                 open="(" close=")" separator=",">
+            #{goodId}
+        </foreach>
+    </select>
+
     <update id="changeStatus" parameterType="java.lang.Integer">
         update good set good_status = #{val} where id=#{id};
     </update>

@@ -58,4 +58,13 @@ public class GoodDaoTest {
         System.out.println(goodDao.queryGoodsRandom());
         System.out.println(goodDao.queryServersRandom());
     }
+
+    @Test
+    public void queryListTest(){
+        System.out.println(goodDao.queryAllRealGoods());
+        System.out.println(goodDao.queryAllService());
+
+        List<Integer> a=List.of(1,2,3,4,5,6,7);
+//        System.out.println(goodDao.queryByIds(a).size());
+    }
 }

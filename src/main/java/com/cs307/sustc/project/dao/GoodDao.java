@@ -11,6 +11,12 @@ public interface GoodDao {
 
     List<Good> queryAllGoods();
 
+    List<Integer> queryAllRealGoods();
+
+    List<Integer> queryAllService();
+
+    List<Good> queryByIds(List<Integer> list);
+
     List<Good> queryGoodsByNumber(String time, Integer number);
 
     Good queryGoodByID(Integer id);
