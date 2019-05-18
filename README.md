@@ -41,34 +41,10 @@ List<Comment> queryComments(Integer user_id);
    List<Good> search(List<String> keywords,Integer tag,Integer page);
    ```
 
-3. 对搜索结果按多种指标排序，传入一个String类型表示是按照时间还是按照价格排序，boolean值表示是否按照降序
-   带有tag的与不带tag的实现基本一致，这里以不带tag的为例：
+3. 对搜索结果按多种指标排序，传入一个String类型表示是按照时间还是按照价格排序，boolean值表示是否按照降序。low和up表示商品价格的上界和下届（如果传入两个负数，默认值是0和0x3f3f3f3f）
+   带有tag的与不带tag的实现基本一致(keywords后面多了一个tag参数)，这里以不带tag的为例：
    ```java
-    public List<Good> search(List<String> keywords, Integer page, String sortKey,boolean decrease){
-            List<Good> res;
-            if(sortKey.equals("price")){
-                res=search(keywords,-1);
-                res.sort((a,b)->Float.compare(a.getPrice(),b.getPrice()));
-            }
-            else if(sortKey.equals("time")){
-                res=search(keywords,-1);
-                res.sort(Comparator.comparing(Good::getrelease_time));
-            }
-            else{
-                return new ArrayList<>();
-            }
-            if(decrease){
-                Collections.reverse(res);
-            }
-            if(page<=0){
-                return res;
-            }
-            else{
-                int offset=(page-1)*20;
-                int end=offset+20;
-                return res.subList(Math.min(offset,res.size()),Math.min(end,res.size()));
-            }
-        }
+   public List<Good> search(List<String> keywords, Integer page, String sortKey,boolean decrease,float low,float up);
    ```
    
 
