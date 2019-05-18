@@ -67,7 +67,16 @@ public class Search {
     }
 
     public List<Good> search(List<String> keywords, Integer page, String sortKey,boolean decrease,float low,float up){
+        if(low<0) low=0;
+        if(up<0) up=0x3f3f3f3f;
         List<Good> res=search(keywords,-1);
+        return getGoodsHelp(page, sortKey, decrease, res, low, up);
+    }
+
+    public List<Good> search(List<String> keywords,Integer tag, Integer page, String sortKey,boolean decrease,Integer low,Integer up){
+        if(low<0) low=0;
+        if(up<0) up=0x3f3f3f3f;
+        List<Good> res=search(keywords,tag,-1);
         return getGoodsHelp(page, sortKey, decrease, res, low, up);
     }
 
@@ -96,10 +105,7 @@ public class Search {
         }
     }
 
-    public List<Good> search(List<String> keywords,Integer tag, Integer page, String sortKey,boolean decrease,Integer low,Integer up){
-        List<Good> res=search(keywords,tag,-1);
-        return getGoodsHelp(page, sortKey, decrease, res, low, up);
-    }
+
 
     private void maintain(){
         if(System.currentTimeMillis()-lastClearTime.getTime()>1800000){
