@@ -24,7 +24,7 @@ public interface GoodDao {
 
     Integer insertGood(Good good);
 
-    void changeStatus(Integer id,Integer val);
+    void changeStatusAdmin(Integer id,Integer val);
 
     void changeStatus(Integer seller_id, Integer id,Integer val);
     /**

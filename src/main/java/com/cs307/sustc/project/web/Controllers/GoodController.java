@@ -57,7 +57,7 @@ public class GoodController {
         Good good=goodDao.queryGoodByID(id);
         if(good!=null&&good.getGood_status()==1){
 //            System.out.println("changed!");
-            goodDao.changeStatus(id,4);
+            goodDao.changeStatusAdmin(id,4);
             return "下架成功";
         }
         else{

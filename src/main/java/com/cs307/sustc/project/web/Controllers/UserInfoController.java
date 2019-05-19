@@ -30,7 +30,7 @@ public class UserInfoController {
 
     @CrossOrigin
     @RequestMapping("/user_info/search")
-    public List<UserInfo> findUser(@RequestParam(value = "id") Integer id){
+    public UserInfo findUser(@RequestParam(value = "id") Integer id){
         return userInfoDao.queryUserInfoById(id);
     }
 
@@ -43,8 +43,8 @@ public class UserInfoController {
         if(id==-1){
             return "请选择一个用户";
         }
-        List<UserInfo> user=userInfoDao.queryUserInfoById(id);
-        if(user.size()>0&&user.get(0).getStatus()==1){
+        UserInfo user=userInfoDao.queryUserInfoById(id);
+        if(user!=null&&user.getStatus()==1){
 //            System.out.println("changed!");
             userInfoDao.changeStatus(id,0);
             return "注销用户成功";
