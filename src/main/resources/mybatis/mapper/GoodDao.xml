@@ -19,12 +19,12 @@
 
     <select id="queryAllRealGoods" resultType="java.lang.Integer">
         select id
-        from good where good_status>0 and good_tag!=9 order by id desc limit 2000
+        from good where good_status=1 and good_tag!=9 order by id desc limit 2000
     </select>
 
     <select id="queryAllService" resultType="java.lang.Integer">
         select id
-        from good where good_status>0 and good_tag=9 order by id desc limit 2000
+        from good where good_status=1 and good_tag=9 order by id desc limit 2000
     </select>
 
     <select id="queryByIds" resultType="com.cs307.sustc.project.entity.Good">
@@ -62,13 +62,13 @@
 
     <select id="queryGoodsRandom" resultType="com.cs307.sustc.project.entity.Good">
         SELECT t1.id,seller_id,good_tag,name,description,release_time,good_status,price,last_price,picture_url FROM good AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM good)-(SELECT MIN(id) FROM good))+(SELECT MIN(id) FROM good)) AS id) AS t2
-        WHERE t1.id >= t2.id and good_status>0
+        WHERE t1.id >= t2.id and good_status=1
         ORDER BY t1.id LIMIT 14;
     </select>
 
     <select id="queryServersRandom" resultType="com.cs307.sustc.project.entity.Good">
         SELECT t1.id,seller_id,good_tag,name,description,release_time,good_status,price,last_price,picture_url FROM good AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM good)-(SELECT MIN(id) FROM good))+(SELECT MIN(id) FROM good)) AS id) AS t2
-        WHERE t1.id >= t2.id and good_status>0 and good_tag = 9
+        WHERE t1.id >= t2.id and good_status=1 and good_tag = 9
         ORDER BY t1.id LIMIT 14;
     </select>
 

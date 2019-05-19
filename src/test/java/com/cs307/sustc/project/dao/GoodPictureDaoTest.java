@@ -35,4 +35,9 @@ public class GoodPictureDaoTest {
         for(int x = 0; x < 20; x++)
             goodPictureDao.insertGoodPicture(new GoodPicture(1, "https://bilibili.com"));
     }
+
+    @Test
+    public void test(){
+        System.out.println(goodPictureDao.queryAllGoodPicturesUrl(1));
+    }
 }

@@ -57,7 +57,7 @@ public class GoodController {
         Good good=goodDao.queryGoodByID(id);
         if(good!=null&&good.getGood_status()==1){
 //            System.out.println("changed!");
-            goodDao.changeStatus(id,-1);
+            goodDao.changeStatus(id,4);
             return "下架成功";
         }
         else{
@@ -70,7 +70,7 @@ public class GoodController {
     public List<String> getPictures(@RequestParam("good") Integer good){
         List<String> list=goodPictureDao.queryAllGoodPicturesUrl(good);
         List<String> res=new ArrayList<>();
-        res.add("1");
+        res.add(goodDao.queryGoodByID(good).getPicture_url());
         res.addAll(list);
         return res;
     }

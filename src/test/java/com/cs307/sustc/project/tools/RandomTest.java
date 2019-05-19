@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class RandomTest {
@@ -14,7 +16,7 @@ public class RandomTest {
 
     @Test
     public void mainTest(){
-        System.out.println(randomGoods.queryGoodsRandom());
+        System.out.println(Arrays.toString(randomGoods.queryGoodsRandom().stream().map(t->t.getId()).toArray()));
         System.out.println(randomGoods.queryServersRandom());
     }
 }
