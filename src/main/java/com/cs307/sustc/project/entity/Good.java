@@ -15,7 +15,7 @@ public class Good {
     private float last_price;
 
     public Good(Integer id, Integer seller_id, Integer good_tag, String name, String description,
-                Date release_time, Integer good_status, float price, float last_price,String picture_url) {
+                Date release_time, Integer good_status, float price, float last_price, String picture_url) {
         this.id = id;
         this.seller_id = seller_id;
         this.good_tag = good_tag;
@@ -29,7 +29,7 @@ public class Good {
     }
 
     public Good(Integer seller_id, Integer good_tag, String name, String description,
-                Integer good_status, float price, float last_price) {
+                Integer good_status, float price, float last_price, String picture_url) {
         this.id = null;
         this.seller_id = seller_id;
         this.good_tag = good_tag;
@@ -39,8 +39,8 @@ public class Good {
         this.good_status = good_status;
         this.price = price;
         this.last_price = last_price;
+        this.picture_url = picture_url;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }

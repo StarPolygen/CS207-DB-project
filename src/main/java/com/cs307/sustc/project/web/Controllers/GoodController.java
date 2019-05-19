@@ -67,7 +67,7 @@ public class GoodController {
 
     @RequestMapping(value = "good/picture",method = RequestMethod.GET)
     @CrossOrigin
-    public List<String> getPictures(@RequestParam("good") Integer good){
+    public List<String> getPictures(@RequestParam("token") String token,@RequestParam("good") Integer good){
         List<String> list=goodPictureDao.queryAllGoodPicturesUrl(good);
         List<String> res=new ArrayList<>();
         res.add(goodDao.queryGoodByID(good).getPicture_url());

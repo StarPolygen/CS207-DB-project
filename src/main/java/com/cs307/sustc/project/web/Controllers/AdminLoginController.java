@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Random;
 
 @RestController
 @CrossOrigin
@@ -24,7 +25,9 @@ public class AdminLoginController {
             return "login failed";
         }
         else{
-            String token =  RandomStringUtils.randomAlphanumeric(45);
+            Random random=new Random(System.currentTimeMillis());
+            int len=Math.abs(random.nextInt())%500+45;
+            String token =  RandomStringUtils.randomAlphanumeric(len).substring(0,45);
             tokens.put(account,token);
             System.out.println(token);
             return token;

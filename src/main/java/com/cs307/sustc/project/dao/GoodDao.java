@@ -22,9 +22,11 @@ public interface GoodDao {
 
     Good queryGoodByID(Integer id);
 
-    void insertGood(Good good);
+    Integer insertGood(Good good);
 
     void changeStatus(Integer id,Integer val);
+
+    void changeStatus(Integer seller_id, Integer id,Integer val);
     /**
      * find all goods with a keywords
      * limit 1000
@@ -57,9 +59,25 @@ public interface GoodDao {
      */
     List<Good> findKeywordWithTag(@Param("name") String name,@Param("tag") Integer tag);
 
-    List<Good> queryGoodsRandom();
+//    List<Good> queryGoodsRandom();
+//
+//    List<Good> queryServersRandom();
 
-    List<Good> queryServersRandom();
+//    List<Map<String,Object>> queryGoodAndSellerByGoodId(Integer good_id);
+    Map<String,Object> queryGoodAndSellerByGoodId(Integer good_id);
 
-    List<Map<String,Object>> queryGoodAndSellerByGoodId(Integer good_id);
+    List<Good> queryByKeyStringPriceIncreasing(String keyString, Integer min, Integer max);
+
+    List<Good> queryByKeyStringPriceDecreasing(String keyString, Integer min, Integer max);
+
+    List<Good> queryByKeyStringTimeIncreasing(String keyString,  Integer min, Integer max);
+
+    List<Good> queryByKeyStringTimeDecreasing(String keyString,  Integer min, Integer max);
+
+    List<Good> queryGoodsByUserId(Integer seller_id, Integer status);
+
+    void changePrice(Integer seller_id, Integer good_id, Integer price);
+
+    void changeContent(Integer seller_id, Integer id, String name, String description);
 }
+

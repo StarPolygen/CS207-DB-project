@@ -4,6 +4,7 @@ import com.cs307.sustc.project.entity.Comment;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface CommentDao {
@@ -15,4 +16,6 @@ public interface CommentDao {
     void insertComment(Comment comment);
 
     List<Comment> queryComments(Integer user_id);
+
+    List<Map> queryCommentsAndAvatarByID(Integer user_id);
 }
