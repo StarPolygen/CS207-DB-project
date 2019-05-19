@@ -100,7 +100,13 @@
 
     <select id="queryGoodsByUserId" resultType="com.cs307.sustc.project.entity.Good">
         select * from good
-        where seller_id = #{seller_id} and status = #{status}
+        where seller_id = #{seller_id} and good_status = #{status}
+        order by id;
+    </select>
+
+    <select id="queryGoodsByUserId" resultType="com.cs307.sustc.project.entity.Good">
+        select * from good
+        where seller_id = #{seller_id} and good_status &lt;4
         order by id;
     </select>
 

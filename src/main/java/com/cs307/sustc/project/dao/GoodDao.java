@@ -76,6 +76,8 @@ public interface GoodDao {
 
     List<Good> queryGoodsByUserId(Integer seller_id, Integer status);
 
+    List<Good> queryGoodsByUserId(Integer seller_id);
+
     void changePrice(Integer seller_id, Integer good_id, Integer price);
 
     void changeContent(Integer seller_id, Integer id, String name, String description);

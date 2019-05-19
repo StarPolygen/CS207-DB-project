@@ -2,6 +2,7 @@ package com.cs307.sustc.project.web.Controllers;
 
 import com.cs307.sustc.project.dao.GoodDao;
 import com.cs307.sustc.project.entity.Good;
+import com.cs307.sustc.project.tools.RandomGoods;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +17,19 @@ public class MainPageController {
 
     @Autowired
     private GoodDao goodDao;
+    @Autowired
+    private RandomGoods randomGoods;
 
     @RequestMapping(value = "/main/queryGoodsRandom", method = RequestMethod.GET)
     public String queryGoodsRandom(){
-        List<Good> list = goodDao.queryGoodsRandom();
+        List<Good> list = randomGoods.queryGoodsRandom();
         return getString(list);
 
     }
 
     @RequestMapping(value = "/main/queryServersRandom", method = RequestMethod.GET)
     public String queryServersRandom(){
-        List<Good> list = goodDao.queryServersRandom();
+        List<Good> list = randomGoods.queryServersRandom();
         return getString(list);
     }
 

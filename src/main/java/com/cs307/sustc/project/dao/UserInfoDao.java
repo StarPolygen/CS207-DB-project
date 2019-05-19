@@ -15,7 +15,7 @@ public interface UserInfoDao {
      * @param id
      * @return
      */
-    List<UserInfo> queryUserInfoById(Integer id);
+    UserInfo queryUserInfoById(Integer id);
 
     UserInfo queryUserInfoByOpenID(String open_id);
 
