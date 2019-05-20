@@ -8,7 +8,7 @@ public class RandomCode{
     private ArrayList<String> list;
     public String generate(int len){
         HashMap<Character,Integer> m=new HashMap<>();
-        Random random= new Random();
+        Random random= new Random(System.currentTimeMillis());
         StringBuffer sb=new StringBuffer();
         for (int i=0;i<len;i++){
             int tmp=(int)(random.nextInt(26));

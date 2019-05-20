@@ -59,22 +59,9 @@ public interface GoodDao {
      */
     List<Good> findKeywordWithTag(@Param("name") String name,@Param("tag") Integer tag);
 
-//    List<Good> queryGoodsRandom();
-//
-//    List<Good> queryServersRandom();
-
-//    List<Map<String,Object>> queryGoodAndSellerByGoodId(Integer good_id);
     Map<String,Object> queryGoodAndSellerByGoodId(Integer good_id);
 
-    List<Good> queryByKeyStringPriceIncreasing(String keyString, Integer min, Integer max);
-
-    List<Good> queryByKeyStringPriceDecreasing(String keyString, Integer min, Integer max);
-
-    List<Good> queryByKeyStringTimeIncreasing(String keyString,  Integer min, Integer max);
-
-    List<Good> queryByKeyStringTimeDecreasing(String keyString,  Integer min, Integer max);
-
-    List<Good> queryGoodsByUserId(Integer seller_id, Integer status);
+    List<Good> queryGoodsByUserIdAndStatus(Integer seller_id, Integer status);
 
     List<Good> queryGoodsByUserId(Integer seller_id);
 

@@ -1,6 +1,7 @@
 package com.cs307.sustc.project.dao;
 
 import com.cs307.sustc.project.entity.Favorite;
+import com.cs307.sustc.project.entity.Good;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface FavoriteDao {
 
     void insertFavorite(Favorite favorite);
 
+    List<Good> queryFavoriteByUser(Integer user);
 }

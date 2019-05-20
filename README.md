@@ -1,25 +1,31 @@
-# cs307Project 新增的功能及定义（2019/05/17)
+# 懒猫二手交易市场（后端）
 
-## Dao相关
+本项目基于springboot，数据库相关采用mybatis
 
-1. 后台请求数据库随机选取14个商品和服务（定义在GoodDao）
+## 代码结构
 
-```java
-List<Good> queryGoodsRandom();
-List<Good> queryServersRandom();
-```
+1. config：
+   - 对mybatis的设定（数据库类型，数据库地址）
+   - web相关配置
+   - 自动处理transaction（采用c3p0）
+2. dao (data access object):
+   - 所有数据库相关操作的接口
+3. entity：实体类，数据库对应的实体
+4. handler：与微信小程序api之间的操作，主要是拿到openid
+5. tools：工具类
+   - EmailUtil：邮箱验证（服务器将会发个邮件过去）
+   - GT：Google translate
+   - HttpClientUtil：封装http请求 [source](https://github.com/leechenxiang/imooc-springboot-wxlogin/blob/master/src/main/java/com/imooc/common/HttpClientUtil.java>) 
+   - RandomGoods：生成14个随机的商品
+   - Search：搜索，支持多个关键词搜索（以空格分开），并选取匹配程度最高的2000条，然后支持按多种键值排序，并支持价格区间筛选
+6. web.Controllers：前端相关Controllers
 
-2. 得到某个人的聊天记录清单（默认按照时间逆序）（定义在MessageDao）
+##数据库定义 
 
-```java
-List<Message> queryMessageList(Integer user_id);
-```
+![cs307project](asset/cs307project.png)
 
-3. 得到某个人的评价记录（默认按照时间逆序）（定义在CommentDao）
+//TO-DO
 
-```java
-List<Comment> queryComments(Integer user_id);
-```
 
 ## 搜索相关
 

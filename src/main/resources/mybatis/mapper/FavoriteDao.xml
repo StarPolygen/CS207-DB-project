@@ -14,4 +14,8 @@
        insert into favorite(add_user, good_id)
        values (#{add_user}, #{good_id});
     </insert>
+
+    <select id="queryFavoriteByUser" parameterType="java.lang.Integer" resultType="com.cs307.sustc.project.entity.Good">
+        select g.id,g.seller_id,g.good_tag,g.name,g.description,g.release_time,g.good_status,g.price,g.last_price,g.picture_url from favorite join good g on favorite.good_id = g.id where add_user=#{user} order by favorite.add_time desc
+    </select>
 </mapper>

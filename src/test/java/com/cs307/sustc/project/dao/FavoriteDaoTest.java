@@ -28,4 +28,9 @@ public class FavoriteDaoTest {
     public void insertFavorite(){
 
     }
+
+    @Test
+    public void queryFavoriteTest(){
+        System.out.println(favoriteDao.queryFavoriteByUser(1));
+    }
 }

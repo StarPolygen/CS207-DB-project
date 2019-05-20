@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cs307.sustc.project.dao.GoodDao">
     <select id="queryAllGoods" resultType="com.cs307.sustc.project.entity.Good">
-        select * from good where good_status&gt;0 order by id desc limit 2000
+        select * from good where good_status=1 order by id desc limit 2000
     </select>
     <select id="queryGoodsByNumber" resultType="com.cs307.sustc.project.entity.Good">
         select * from good
@@ -64,41 +64,23 @@
         select * from good where good_status=1 and name like '%${name}%' order by release_time desc limit 1000
     </select>
 
-    <select id="queryGoodsRandom" resultType="com.cs307.sustc.project.entity.Good">
-        SELECT t1.id,seller_id,good_tag,name,description,release_time,good_status,price,last_price,picture_url FROM good AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM good)-(SELECT MIN(id) FROM good))+(SELECT MIN(id) FROM good)) AS id) AS t2
-        WHERE t1.id >= t2.id and good_status=1
-        ORDER BY t1.id LIMIT 14;
-    </select>
-
-    <select id="queryServersRandom" resultType="com.cs307.sustc.project.entity.Good">
-        SELECT t1.id,seller_id,good_tag,name,description,release_time,good_status,price,last_price,picture_url FROM good AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM good)-(SELECT MIN(id) FROM good))+(SELECT MIN(id) FROM good)) AS id) AS t2
-        WHERE t1.id >= t2.id and good_status=1 and good_tag = 9
-        ORDER BY t1.id LIMIT 14;
-    </select>
-
-<!--    <select id="queryGoodAndSellerByGoodId" resultType="java.util.Map">-->
-<!--        select good.id as good_id,good_tag,good.name as good_name, good.description as good_description,good.release_time as good_release_time, good.price as good_price,-->
-<!--               good.last_price as good_last_price, picture_url as good_picture_url, seller_id, ui.nickname as seller_nickname, ui.avatar_url as seller_avatar_url-->
-<!--        from good cross join user_info ui on good.seller_id = ui.id where good.id=#{good_id}-->
+<!--    <select id="queryByKeyStringPriceIncreasing" resultType="com.cs307.sustc.project.entity.Good">-->
+<!--        select * from good where name like concat('%',#{keyString},'%') and price &lt;= #{max} and price &gt;= #{min} order by price asc-->
 <!--    </select>-->
 
-    <select id="queryByKeyStringPriceIncreasing" resultType="com.cs307.sustc.project.entity.Good">
-        select * from good where name like concat('%',#{keyString},'%') and price &lt;= #{max} and price &gt;= #{min} order by price asc
-    </select>
+<!--    <select id="queryByKeyStringPriceDecreasing" resultType="com.cs307.sustc.project.entity.Good">-->
+<!--        select * from good where name like concat('%',#{keyString},'%') and price &lt;= #{max} and price &gt;= #{min} order by price desc-->
+<!--    </select>-->
 
-    <select id="queryByKeyStringPriceDecreasing" resultType="com.cs307.sustc.project.entity.Good">
-        select * from good where name like concat('%',#{keyString},'%') and price &lt;= #{max} and price &gt;= #{min} order by price desc
-    </select>
+<!--    <select id="queryByKeyStringTimeIncreasing" resultType="com.cs307.sustc.project.entity.Good">-->
+<!--        select * from good where name like concat('%',#{keyString},'%') and price &lt;= #{max} and price &gt;= #{min} order by release_time asc-->
+<!--    </select>-->
 
-    <select id="queryByKeyStringTimeIncreasing" resultType="com.cs307.sustc.project.entity.Good">
-        select * from good where name like concat('%',#{keyString},'%') and price &lt;= #{max} and price &gt;= #{min} order by release_time asc
-    </select>
+<!--    <select id="queryByKeyStringTimeDecreasing" resultType="com.cs307.sustc.project.entity.Good">-->
+<!--        select * from good where name like concat('%',#{keyString},'%') and price &lt;= #{max} and price &gt;= #{min} order by release_time desc-->
+<!--    </select>-->
 
-    <select id="queryByKeyStringTimeDecreasing" resultType="com.cs307.sustc.project.entity.Good">
-        select * from good where name like concat('%',#{keyString},'%') and price &lt;= #{max} and price &gt;= #{min} order by release_time desc
-    </select>
-
-    <select id="queryGoodsByUserId" resultType="com.cs307.sustc.project.entity.Good">
+    <select id="queryGoodsByUserIdAndStatus" resultType="com.cs307.sustc.project.entity.Good">
         select * from good
         where seller_id = #{seller_id} and good_status = #{status}
         order by id;

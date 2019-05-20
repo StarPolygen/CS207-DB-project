@@ -38,9 +38,9 @@ public class GoodDaoTest {
 
     @Test
     public void insertGood(){
-        Good good = new Good(1, 1, "iphone", "ip X", 1, (float) 2.50, (float) 1.20);
-        for(int x = 0; x < 20; x++)
-            goodDao.insertGood(good);
+//        Good good = new Good(1, 1, "iphone", "ip X", 1, (float) 2.50, (float) 1.20);
+//        for(int x = 0; x < 20; x++)
+//            goodDao.insertGood(good);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class GoodDaoTest {
 
     @Test
     public void randomTest(){
-        System.out.println(goodDao.queryGoodsRandom());
-        System.out.println(goodDao.queryServersRandom());
+//        System.out.println(goodDao.queryGoodsRandom());
+//        System.out.println(goodDao.queryServersRandom());
     }
 
     @Test

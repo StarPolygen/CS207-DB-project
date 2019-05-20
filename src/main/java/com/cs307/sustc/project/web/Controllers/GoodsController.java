@@ -125,7 +125,7 @@ public class GoodsController {
     public String queryPersonalGood(HttpServletRequest httpServletRequest, Integer status){
         String openid = (String) httpServletRequest.getSession().getAttribute("openid");
         UserInfo userInfo = userInfoDao.queryUserInfoByOpenID(openid);
-        List<Good> goods = goodDao.queryGoodsByUserId(userInfo.getId(), status);
+        List<Good> goods = goodDao.queryGoodsByUserIdAndStatus(userInfo.getId(), status);
         SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
         JSONArray jsonArray = new JSONArray();
         for(Good good : goods){

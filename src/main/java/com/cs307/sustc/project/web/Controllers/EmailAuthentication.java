@@ -1,11 +1,9 @@
 package com.cs307.sustc.project.web.Controllers;
 
-import com.cs307.sustc.project.dao.AuthenticationDao;
 import com.cs307.sustc.project.entity.EmailInfo;
 import com.cs307.sustc.project.tools.EmailUtil;
 import com.cs307.sustc.project.tools.RandomCode;
 import net.sf.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmailAuthentication {
 
-    @Autowired
-    private AuthenticationDao authenticationDao;
+//    @Autowired
+//    private AuthenticationDao authenticationDao;
 
     @RequestMapping(value = "/authentication", method = RequestMethod.GET)
     public String authentication(String code, String email){

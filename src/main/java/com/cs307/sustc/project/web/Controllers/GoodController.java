@@ -26,10 +26,7 @@ public class GoodController {
         if(token==null||(!AdminLoginController.tokens.containsy(token))){
             return new ArrayList<>();
         }
-//        if(name.length()==0){
             return goodDao.queryAllGoods();
-//        }
-//        return search.search(List.of(name.split(" ")),1);
     }
 
     @RequestMapping(value = "/good/search",method = RequestMethod.GET)
