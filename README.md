@@ -20,7 +20,7 @@
    - Search：搜索，支持多个关键词搜索（以空格分开），并选取匹配程度最高的2000条，然后支持按多种键值排序，并支持价格区间筛选
 6. web.Controllers：前端相关Controllers
 
-##数据库定义 
+## 数据库定义 
 
 ![cs307project](asset/cs307project.png)
 
